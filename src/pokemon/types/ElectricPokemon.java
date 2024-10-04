@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ElectricPokemon extends Pokemon {
     private static final int maxVoltage = 10000;
-    private static final List<String> attacks = Arrays.asList("ThunderPunch", "ElectroBall", "Thunder", "VoltTackle") ;
+    private static final List<String> attacks = Arrays.asList("ThunderPunch", "ElectroBall", "Thunder", "VoltTackle");
     private int voltageLevel;
 
     public ElectricPokemon(String name, int level, float weight, float height, int hp, int xp, int voltageLevel) {
@@ -26,7 +26,7 @@ public class ElectricPokemon extends Pokemon {
     }
 
     public void setVoltageLevel(int voltageLevel) {
-        this.voltageLevel = voltageLevel;
+        this.voltageLevel = Math.min(voltageLevel, maxVoltage);
     }
 
     public List<String> getAttacks() {
