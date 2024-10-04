@@ -1,3 +1,5 @@
+package pokemon;
+
 import java.util.List;
 
 // Los in deze klasse alle foutmeldingen op door (abstracte) klassen met variabelen en methodes te maken en een interface met methodes (en soms een import).
@@ -115,7 +117,7 @@ public class PokemonGymImpl implements PokemonGym {
     public String chooseAttackPlayer(Pokemon p){
         Scanner speler_A = new Scanner(System.in);
         String type = p.getType();
-        switch (type) {
+        switch (type.toLowerCase()) {
             case "fire" -> {
                 FirePokemon fp = (FirePokemon) p;
                 System.out.println("Choose your attack");
