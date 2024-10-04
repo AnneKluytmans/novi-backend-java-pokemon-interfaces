@@ -75,4 +75,31 @@ public abstract class Pokemon {
         this.xp = xp;
     }
 
+
+    public String toString() {
+        return "\n" + name + " is a " + type + " Pokemon with a weight of " + weight + " kg and a height of " + height +
+                " m. \n -Level: " + level + "\n -HP: " + hp + "\n -XP: " + xp + "\n";
+    }
+
+
+    public abstract void feed();
+
+    public abstract void speaks();
+
+    public void levelUp() {
+        level++;
+        hp += 50;
+        xp = 0;
+        System.out.println(name + " leveled up to level " + level + "! \n- HP is now: " + hp + " \n- xp is now: " + xp + "\n");
+    }
+
+    public void takeDamage(int damage) {
+        hp -= damage;
+        if (hp <= 0) {
+            hp = 0;
+            System.out.println(name + " has passed out and cannot play until hp is restored.\n");
+        } else {
+            System.out.println(name + " loses " + damage + " HP points. \n" + name + " has " + hp + " HP left.\n");
+        }
+    }
 }
