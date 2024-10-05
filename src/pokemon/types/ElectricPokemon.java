@@ -6,19 +6,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ElectricPokemon extends Pokemon {
-    private static final int maxVoltage = 10000;
+    private static final int maxVoltage = 5000;
     private static final List<String> attacks = Arrays.asList("ThunderPunch", "ElectroBall", "Thunder", "VoltTackle");
     private int voltageLevel;
 
-    public ElectricPokemon(String name, int level, float weight, float height, int hp, int xp, int voltageLevel) {
-        super(name, "Electric", "lightning", "Wroaaaarrrr",
-                level, weight, height, hp, xp);
+    public ElectricPokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int voltageLevel) {
+        super(name, "Electric", food, sound, level, weight, height, hp, xp);
         this.voltageLevel = voltageLevel;
     }
 
 
     public int getMaxVoltage() {
         return maxVoltage;
+    }
+
+    public List<String> getAttacks() {
+        return attacks;
     }
 
     public int getVoltageLevel() {
@@ -29,25 +32,17 @@ public class ElectricPokemon extends Pokemon {
         this.voltageLevel = Math.min(voltageLevel, maxVoltage);
     }
 
-    public List<String> getAttacks() {
-        return attacks;
-    }
-
 
     @Override
     public void feed() {
-        System.out.println(getName() + " absorbs " + getFood() + " to boost its energy!");
+        System.out.println(getName() + " eats " + getFood() + " to boost its energy!");
+        setVoltageLevel(voltageLevel + 50);
         setHp(getHp() + 20);
     }
 
-    @Override
-    public void speaks() {
-        System.out.println(getName() + " speaks: " + getSound());
-    }
-
     public void thunderPunch(Pokemon opponent) {
-        int damage = voltageLevel / 4;
-        System.out.println(getName() + " strikes " + opponent.getName() + " with a ThunderPunch.");
+        int damage = calculateDamage(voltageLevel, maxVoltage);
+        System.out.println(getName() + " strikes " + opponent.getName() + " with ThunderPunch.");
         switch(opponent.getType().toLowerCase()) {
             case "grass":
                 opponent.takeDamage(damage + 50);
@@ -70,7 +65,7 @@ public class ElectricPokemon extends Pokemon {
     }
 
     public void electroBall(Pokemon opponent) {
-        int damage = voltageLevel / 2;
+        int damage = calculateDamage(voltageLevel, maxVoltage);
         System.out.println(getName() + " throws an Electro ball to " + opponent.getName() + ".");
         switch(opponent.getType().toLowerCase()) {
             case "grass":
@@ -94,7 +89,7 @@ public class ElectricPokemon extends Pokemon {
     }
 
     public void thunder(Pokemon opponent) {
-        int damage = voltageLevel / 3;
+        int damage = calculateDamage(voltageLevel, maxVoltage);
         System.out.println(getName() + " strikes " + opponent.getName() + " with Thunder.");
         switch(opponent.getType().toLowerCase()) {
             case "grass":
@@ -119,8 +114,8 @@ public class ElectricPokemon extends Pokemon {
     }
 
     public void voltTackle(Pokemon opponent) {
-        int damage = voltageLevel / 4;
-        System.out.println(getName() + " uses a VoltTackle on " + opponent.getName() + ".");
+        int damage = calculateDamage(voltageLevel, maxVoltage);
+        System.out.println(getName() + " uses VoltTackle on " + opponent.getName() + ".");
         switch(opponent.getType().toLowerCase()) {
             case "grass":
                 opponent.takeDamage(damage + 45);

@@ -6,19 +6,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GrassPokemon extends Pokemon {
-    private static final int maxChlorofylLevel = 5000;
+    private static final int maxChlorofylLevel = 1000;
     private static final List<String> attacks = Arrays.asList("LeafStorm", "SolarBeam", "LeechSeed", "LeafBlade");
     private int chlorofylLevel;
 
-    public GrassPokemon(String name, int level, float weight, float height, int hp, int xp, int chlorofylLevel) {
-        super(name, "Grass", "sunlight", "Whoosjj whoojs",
-                level, weight, height, hp, xp);
+    public GrassPokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int chlorofylLevel) {
+        super(name, "Grass", food, sound, level, weight, height, hp, xp);
         this.chlorofylLevel = chlorofylLevel;
     }
 
 
     public int getMaxChlorofylLevel() {
         return maxChlorofylLevel;
+    }
+
+    public List<String> getAttacks() {
+        return attacks;
     }
 
     public int getChlorofylLevel() {
@@ -29,26 +32,17 @@ public class GrassPokemon extends Pokemon {
         this.chlorofylLevel = Math.min(chlorofylLevel, maxChlorofylLevel);
     }
 
-    public List<String> getAttacks() {
-        return attacks;
-    }
-
 
     @Override
     public void feed() {
-        System.out.println(getName() + " absorbs " + getFood() + " to grow and boost its chlorofyl level!");
+        System.out.println(getName() + " eats " + getFood() + " to grow and boost its chlorofyl level!");
         setChlorofylLevel(getChlorofylLevel() + 100);
         setHp(getHp() + 20);
     }
 
-    @Override
-    public void speaks() {
-        System.out.println(getName() + " speaks: " + getSound());
-    }
-
     public void leafStorm(Pokemon opponent) {
-        int damage = chlorofylLevel / 2;
-        System.out.println(getName() + " attacks " + opponent.getName() + " with a LeafStorm.");
+        int damage = calculateDamage(chlorofylLevel, maxChlorofylLevel);
+        System.out.println(getName() + " attacks " + opponent.getName() + " with LeafStorm.");
         switch(opponent.getType().toLowerCase()) {
             case "fire":
                 opponent.takeDamage(damage + 40);
@@ -71,8 +65,8 @@ public class GrassPokemon extends Pokemon {
     }
 
     public void solarBeam(Pokemon opponent) {
-        int damage = chlorofylLevel / 3;
-        System.out.println(getName() + " uses a SolarBeam on " + opponent.getName() + ".");
+        int damage = calculateDamage(chlorofylLevel, maxChlorofylLevel);
+        System.out.println(getName() + " uses SolarBeam on " + opponent.getName() + ".");
         switch(opponent.getType().toLowerCase()) {
             case "fire":
                 opponent.takeDamage(damage + 30);
@@ -95,8 +89,8 @@ public class GrassPokemon extends Pokemon {
     }
 
     public void leechSeed(Pokemon opponent) {
-        int damage = chlorofylLevel / 4;
-        System.out.println(getName() + " performs a LeechSeed on " + opponent.getName() + ".");
+        int damage = calculateDamage(chlorofylLevel, maxChlorofylLevel);
+        System.out.println(getName() + " performs LeechSeed on " + opponent.getName() + ".");
         switch(opponent.getType().toLowerCase()) {
             case "fire":
                 opponent.takeDamage(damage + 25);
@@ -123,8 +117,8 @@ public class GrassPokemon extends Pokemon {
     }
 
     public void leafBlade(Pokemon opponent) {
-        int damage = chlorofylLevel / 3;
-        System.out.println(getName() + " uses a LeafBlade on " + opponent.getName() + ".");
+        int damage = calculateDamage(chlorofylLevel, maxChlorofylLevel);
+        System.out.println(getName() + " uses LeafBlade on " + opponent.getName() + ".");
         switch(opponent.getType().toLowerCase()) {
             case "fire":
                 opponent.takeDamage(damage + 25);

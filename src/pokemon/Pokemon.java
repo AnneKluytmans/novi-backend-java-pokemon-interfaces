@@ -5,9 +5,9 @@ public abstract class Pokemon {
     private final String type;
     private final String food;
     private final String sound;
-    private final int level;
-    private float weight;
-    private float height;
+    private int level;
+    private final float weight;
+    private final float height;
     private int hp;
     private int xp;
 
@@ -22,6 +22,7 @@ public abstract class Pokemon {
         this.hp = hp;
         this.xp = xp;
     }
+
 
     public String getName() {
         return name;
@@ -59,12 +60,8 @@ public abstract class Pokemon {
         return xp;
     }
 
-    public void setWeight(float weight) {
-        this.weight = weight;
-    }
-
-    public void setHeight(float height) {
-        this.height = height;
+    public void setLevel(int level) {
+        this.level = level;
     }
 
     public void setHp(int hp) {
@@ -84,7 +81,9 @@ public abstract class Pokemon {
 
     public abstract void feed();
 
-    public abstract void speaks();
+    public void speaks() {
+        System.out.println(getName() + " speaks: " + getSound());
+    }
 
     public void levelUp() {
         level++;
@@ -100,6 +99,14 @@ public abstract class Pokemon {
             System.out.println(name + " has passed out and cannot play until hp is restored.\n");
         } else {
             System.out.println(name + " loses " + damage + " HP points. \n" + name + " has " + hp + " HP left.\n");
+        }
+    }
+
+    public int calculateDamage(int power, int limit) {
+        if (power > (limit/2)) {
+            return (int) (Math.random() * 11) + 10;
+        } else {
+            return (int) (Math.random() * 10) + 1;
         }
     }
 }
