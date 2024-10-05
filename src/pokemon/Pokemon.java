@@ -6,8 +6,8 @@ public abstract class Pokemon {
     private final String food;
     private final String sound;
     private int level;
-    private final float weight;
-    private final float height;
+    private float weight;
+    private float height;
     private int hp;
     private int xp;
 
@@ -21,6 +21,15 @@ public abstract class Pokemon {
         this.height = height;
         this.hp = hp;
         this.xp = xp;
+    }
+
+    public Pokemon(String name, String type, int level, int hp, String food, String sound) {
+        this.name = name;
+        this.type = type;
+        this.level = level;
+        this.hp = hp;
+        this.food = food;
+        this.sound = sound;
     }
 
 
@@ -64,6 +73,14 @@ public abstract class Pokemon {
         this.level = level;
     }
 
+    public void setWeight(float weight) {
+        this.weight = weight;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
+    }
+
     public void setHp(int hp) {
         this.hp = hp;
     }
@@ -79,10 +96,21 @@ public abstract class Pokemon {
     }
 
 
-    public abstract void feed();
+    public abstract void eats();
 
     public void speaks() {
         System.out.println(getName() + " speaks: " + getSound());
+    }
+
+    public void feed(String food) {
+        System.out.println(getName() + " gets " + food + " food from its owner.");
+
+        if (food.equalsIgnoreCase(type)) {
+            System.out.println(name + " enjoyed his meel and boosted its energy level and raised its HP with 20 points");
+            setHp(getHp() + 20);
+        } else {
+            System.out.println(name + " didn't like this type of food. Its HP didn't change.");
+        }
     }
 
     public void levelUp() {

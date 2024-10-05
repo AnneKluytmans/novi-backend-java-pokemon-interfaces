@@ -15,6 +15,10 @@ public class GrassPokemon extends Pokemon {
         this.chlorofylLevel = chlorofylLevel;
     }
 
+    public GrassPokemon(String name, int level, int hp, String food, String sound) {
+        super(name, "Grass", level, hp, food, sound);
+    }
+
 
     public int getMaxChlorofylLevel() {
         return maxChlorofylLevel;
@@ -34,7 +38,7 @@ public class GrassPokemon extends Pokemon {
 
 
     @Override
-    public void feed() {
+    public void eats() {
         System.out.println(getName() + " eats " + getFood() + " to grow and boost its chlorofyl level!");
         setChlorofylLevel(getChlorofylLevel() + 100);
         setHp(getHp() + 20);
@@ -116,7 +120,7 @@ public class GrassPokemon extends Pokemon {
         System.out.println(getName() + " has gained HP points. HP is now: " + getHp());
     }
 
-    public void leafBlade(Pokemon opponent) {
+    public void leaveBlade(Pokemon opponent) {
         int damage = calculateDamage(chlorofylLevel, maxChlorofylLevel);
         System.out.println(getName() + " uses LeafBlade on " + opponent.getName() + ".");
         switch(opponent.getType().toLowerCase()) {

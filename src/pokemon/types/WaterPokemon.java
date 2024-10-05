@@ -7,13 +7,18 @@ import java.util.List;
 
 public class WaterPokemon extends Pokemon {
     private static final int maxHydrationLevel = 2500;
-    private static final List<String> attacks = Arrays.asList("", "", "", "");
+    private static final List<String> attacks = Arrays.asList("Surf", "HydroPump", "RainDance", "HydroCanon");
     private int hydrationLevel;
 
     public WaterPokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int hydrationLevel) {
-        super(name, "Fire", food, sound, level, weight, height, hp, xp);
+        super(name, "Water", food, sound, level, weight, height, hp, xp);
         this.hydrationLevel = hydrationLevel;
     }
+
+    public WaterPokemon(String name, int level, int hp, String food, String sound) {
+        super(name, "Water", level, hp, food, sound);
+    }
+
 
     public int getMaxHydrationLevel() {
         return maxHydrationLevel;
@@ -33,7 +38,7 @@ public class WaterPokemon extends Pokemon {
 
 
     @Override
-    public void feed() {
+    public void eats() {
         System.out.println(getName() + " eats " + getFood() + " to boost its power and hydration level!");
         setHydrationLevel(hydrationLevel + 100);
         setHp(getHp() + 20);
@@ -87,7 +92,7 @@ public class WaterPokemon extends Pokemon {
         System.out.println(getName() + " has gained 10 HP points. HP is now: " + getHp());
     }
 
-    public void RainDance(Pokemon opponent) {
+    public void rainDance(Pokemon opponent) {
         int damage = calculateDamage(hydrationLevel, maxHydrationLevel);
         System.out.println(getName() + " performs RainDance on " + opponent.getName() + ".");
         switch(opponent.getType().toLowerCase()) {

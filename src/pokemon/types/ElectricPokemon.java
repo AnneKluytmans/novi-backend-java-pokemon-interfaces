@@ -15,6 +15,10 @@ public class ElectricPokemon extends Pokemon {
         this.voltageLevel = voltageLevel;
     }
 
+    public ElectricPokemon(String name, int level, int hp, String food, String sound) {
+        super(name, "Electric", level, hp, food, sound);
+    }
+
 
     public int getMaxVoltage() {
         return maxVoltage;
@@ -34,7 +38,7 @@ public class ElectricPokemon extends Pokemon {
 
 
     @Override
-    public void feed() {
+    public void eats() {
         System.out.println(getName() + " eats " + getFood() + " to boost its energy!");
         setVoltageLevel(voltageLevel + 50);
         setHp(getHp() + 20);

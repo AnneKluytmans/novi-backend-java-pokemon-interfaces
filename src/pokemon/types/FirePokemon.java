@@ -7,13 +7,18 @@ import java.util.List;
 
 public class FirePokemon extends Pokemon {
     private static final int maxTemperature = 500;
-    private static final List<String> attacks = Arrays.asList("", "", "", "");
+    private static final List<String> attacks = Arrays.asList("Inferno", "PyroBall", "FireLash", "FlameThrower");
     private int temperature;
 
     public FirePokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int temperature) {
         super(name, "Fire", food, sound, level, weight, height, hp, xp);
         this.temperature = temperature;
     }
+
+    public FirePokemon(String name, int level, int hp, String food, String sound) {
+        super(name, "Fire", level, hp, food, sound);
+    }
+
 
 
     public int getMaxTemperature() {
@@ -34,7 +39,7 @@ public class FirePokemon extends Pokemon {
 
 
     @Override
-    public void feed() {
+    public void eats() {
         System.out.println(getName() + " eats " + getFood() + " to boost its power and temperature!");
         setTemperature(temperature + 30);
         setHp(getHp() + 20);
