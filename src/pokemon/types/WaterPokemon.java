@@ -11,12 +11,12 @@ public class WaterPokemon extends Pokemon {
     private int hydrationLevel;
 
     public WaterPokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int hydrationLevel) {
-        super(name, "Water", food, sound, level, weight, height, hp, xp);
+        super(name, "water", food, sound, level, weight, height, hp, xp);
         this.hydrationLevel = hydrationLevel;
     }
 
     public WaterPokemon(String name, int level, int hp, String food, String sound) {
-        super(name, "Water", level, hp, food, sound);
+        super(name, "water", level, hp, food, sound);
     }
 
 

@@ -11,12 +11,12 @@ public class FirePokemon extends Pokemon {
     private int temperature;
 
     public FirePokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int temperature) {
-        super(name, "Fire", food, sound, level, weight, height, hp, xp);
+        super(name, "fire", food, sound, level, weight, height, hp, xp);
         this.temperature = temperature;
     }
 
     public FirePokemon(String name, int level, int hp, String food, String sound) {
-        super(name, "Fire", level, hp, food, sound);
+        super(name, "fire", level, hp, food, sound);
     }
 
 

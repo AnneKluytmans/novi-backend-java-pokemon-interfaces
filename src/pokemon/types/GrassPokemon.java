@@ -11,12 +11,12 @@ public class GrassPokemon extends Pokemon {
     private int chlorofylLevel;
 
     public GrassPokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int chlorofylLevel) {
-        super(name, "Grass", food, sound, level, weight, height, hp, xp);
+        super(name, "grass", food, sound, level, weight, height, hp, xp);
         this.chlorofylLevel = chlorofylLevel;
     }
 
     public GrassPokemon(String name, int level, int hp, String food, String sound) {
-        super(name, "Grass", level, hp, food, sound);
+        super(name, "grass", level, hp, food, sound);
     }
 
 

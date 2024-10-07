@@ -11,12 +11,12 @@ public class ElectricPokemon extends Pokemon {
     private int voltageLevel;
 
     public ElectricPokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int voltageLevel) {
-        super(name, "Electric", food, sound, level, weight, height, hp, xp);
+        super(name, "electric", food, sound, level, weight, height, hp, xp);
         this.voltageLevel = voltageLevel;
     }
 
     public ElectricPokemon(String name, int level, int hp, String food, String sound) {
-        super(name, "Electric", level, hp, food, sound);
+        super(name, "electric", level, hp, food, sound);
     }
 
 
