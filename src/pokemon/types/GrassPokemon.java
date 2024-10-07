@@ -44,101 +44,55 @@ public class GrassPokemon extends Pokemon {
         setHp(getHp() + 20);
     }
 
+
+    public int damageCalculator(Pokemon opponent, double attackWeight) {
+        double multiplier = switch (opponent.getType()) {
+            case "water" -> 1.5;
+            case "electric" -> 2.5;
+            case "fire" -> 2.0;
+            case "grass" -> 1.2;
+            default -> 1.0;
+        };
+
+        return (int) (multiplier * calculateDamage(chlorofylLevel, maxChlorofylLevel) * attackWeight);
+    }
+
+
     public void leafStorm(Pokemon opponent) {
-        int damage = calculateDamage(chlorofylLevel, maxChlorofylLevel);
+        int damage = damageCalculator(opponent, 1.2);
+
         System.out.println(getName() + " attacks " + opponent.getName() + " with LeafStorm.");
-        switch(opponent.getType().toLowerCase()) {
-            case "fire":
-                opponent.takeDamage(damage + 40);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 50);
-                break;
-            case "water":
-                opponent.takeDamage(damage + 30);
-                break;
-            case "grass":
-                opponent.takeDamage(damage + 10);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setChlorofylLevel(chlorofylLevel - 20);
         setHp(getHp() + 10);
         System.out.println(getName() + " has gained 10 HP points. HP is now: " + getHp());
     }
 
     public void solarBeam(Pokemon opponent) {
-        int damage = calculateDamage(chlorofylLevel, maxChlorofylLevel);
+        int damage = damageCalculator(opponent, 1.5);
+
         System.out.println(getName() + " uses SolarBeam on " + opponent.getName() + ".");
-        switch(opponent.getType().toLowerCase()) {
-            case "fire":
-                opponent.takeDamage(damage + 30);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 50);
-                break;
-            case "water":
-                opponent.takeDamage(damage + 20);
-                break;
-            case "grass":
-                opponent.takeDamage(damage + 5);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setChlorofylLevel(chlorofylLevel - 15);
         setHp(getHp() + 15);
         System.out.println(getName() + " has gained 15 HP points. HP is now: " + getHp());
     }
 
     public void leechSeed(Pokemon opponent) {
-        int damage = calculateDamage(chlorofylLevel, maxChlorofylLevel);
+        int damage = damageCalculator(opponent, 1.5);
+
         System.out.println(getName() + " performs LeechSeed on " + opponent.getName() + ".");
-        switch(opponent.getType().toLowerCase()) {
-            case "fire":
-                opponent.takeDamage(damage + 25);
-                setHp(getHp() + (damage + 25));
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 45);
-                setHp(getHp() + (damage + 45));
-                break;
-            case "water":
-                opponent.takeDamage(damage + 15);
-                setHp(getHp() + (damage + 15));
-                break;
-            case "grass":
-                opponent.takeDamage(damage + 5);
-                setHp(getHp() + (damage + 5));
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
+        setHp(getHp() + damage + 5);
         setChlorofylLevel(chlorofylLevel - 30);
-        setHp(getHp() + 5);
         System.out.println(getName() + " has gained HP points. HP is now: " + getHp());
     }
 
     public void leaveBlade(Pokemon opponent) {
-        int damage = calculateDamage(chlorofylLevel, maxChlorofylLevel);
+        int damage = damageCalculator(opponent, 1.2);
+
         System.out.println(getName() + " uses LeafBlade on " + opponent.getName() + ".");
-        switch(opponent.getType().toLowerCase()) {
-            case "fire":
-                opponent.takeDamage(damage + 25);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 30);
-                break;
-            case "water":
-                opponent.takeDamage(damage + 15);
-                break;
-            case "grass":
-                opponent.takeDamage(damage + 10);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setChlorofylLevel(chlorofylLevel - 5);
         setHp(getHp() + 5);
         System.out.println(getName() + " has gained 5 HP points. HP is now: " + getHp());

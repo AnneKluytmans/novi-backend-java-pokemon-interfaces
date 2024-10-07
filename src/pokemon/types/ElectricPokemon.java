@@ -44,73 +44,50 @@ public class ElectricPokemon extends Pokemon {
         setHp(getHp() + 20);
     }
 
+    public int damageCalculator(Pokemon opponent, double attackWeight) {
+        double multiplier = switch (opponent.getType()) {
+            case "water" -> 2.5;
+            case "electric" -> 1.2;
+            case "fire" -> 1.5;
+            case "grass" -> 2.0;
+            default -> 1.0;
+        };
+
+        return (int) (multiplier * calculateDamage(voltageLevel, maxVoltage) * attackWeight);
+    }
+
     public void thunderPunch(Pokemon opponent) {
-        int damage = calculateDamage(voltageLevel, maxVoltage);
+        int damage = damageCalculator(opponent, 1.2);
+
         System.out.println(getName() + " strikes " + opponent.getName() + " with ThunderPunch.");
-        switch(opponent.getType().toLowerCase()) {
-            case "grass":
-                opponent.takeDamage(damage + 50);
-                break;
-            case "water":
-                opponent.takeDamage(damage + 70);
-                break;
-            case "fire":
-                opponent.takeDamage(damage + 30);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 10);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setVoltageLevel(voltageLevel - 20);
         setHp(getHp() + 10);
         System.out.println(getName() + " has gained 10 HP points. HP is now: " + getHp());
     }
 
     public void electroBall(Pokemon opponent) {
-        int damage = calculateDamage(voltageLevel, maxVoltage);
+        int damage = damageCalculator(opponent, 1.5);
+
         System.out.println(getName() + " throws an Electro ball to " + opponent.getName() + ".");
-        switch(opponent.getType().toLowerCase()) {
-            case "grass":
-                opponent.takeDamage(damage + 45);
-                break;
-            case "water":
-                opponent.takeDamage(damage + 65);
-                break;
-            case "fire":
-                opponent.takeDamage(damage + 25);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 5);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setVoltageLevel(voltageLevel - 50);
         setHp(getHp() + 30);
         System.out.println(getName() + " has gained 30 HP points. HP is now: " + getHp());
     }
 
     public void thunder(Pokemon opponent) {
-        int damage = calculateDamage(voltageLevel, maxVoltage);
+        int damage = damageCalculator(opponent, 1.4);
+
         System.out.println(getName() + " strikes " + opponent.getName() + " with Thunder.");
         switch(opponent.getType().toLowerCase()) {
-            case "grass":
-                opponent.takeDamage(damage + 60);
-                break;
-            case "water":
-                opponent.takeDamage(damage + 80);
-                break;
-            case "fire":
-                opponent.takeDamage(damage + 40);
-                break;
             case "electric":
                 opponent.setHp(opponent.getHp() + 15);
                 System.out.println(opponent.getName() + " gaines 15 HP points and has now " + opponent.getHp() + " HP.");
                 break;
+            case "fire", "water", "grass":
             default:
-                System.out.println("This type of pokemon cannot compete.");
+                opponent.takeDamage(damage);
         }
         setVoltageLevel(voltageLevel - 25);
         setHp(getHp() + 20);
@@ -118,24 +95,10 @@ public class ElectricPokemon extends Pokemon {
     }
 
     public void voltTackle(Pokemon opponent) {
-        int damage = calculateDamage(voltageLevel, maxVoltage);
+        int damage = damageCalculator(opponent, 1.2);
+
         System.out.println(getName() + " uses VoltTackle on " + opponent.getName() + ".");
-        switch(opponent.getType().toLowerCase()) {
-            case "grass":
-                opponent.takeDamage(damage + 45);
-                break;
-            case "water":
-                opponent.takeDamage(damage + 55);
-                break;
-            case "fire":
-                opponent.takeDamage(damage + 35);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 15);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setVoltageLevel(voltageLevel - 25);
         setHp(getHp() + 15);
         System.out.println(getName() + " has gained 15 HP points. HP is now: " + getHp());

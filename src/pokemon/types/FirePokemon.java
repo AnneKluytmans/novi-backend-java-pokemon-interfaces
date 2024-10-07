@@ -45,97 +45,53 @@ public class FirePokemon extends Pokemon {
         setHp(getHp() + 20);
     }
 
+    public int damageCalculator(Pokemon opponent, double attackWeight) {
+        double multiplier = switch (opponent.getType()) {
+            case "water" -> 2.0;
+            case "electric" -> 1.5;
+            case "fire" -> 1.2;
+            case "grass" -> 2.5;
+            default -> 1.0;
+        };
+
+        return (int) (multiplier * calculateDamage(temperature, maxTemperature) * attackWeight);
+    }
+
     public void inferno(Pokemon opponent) {
-        int damage = calculateDamage(temperature, maxTemperature);
+        int damage = damageCalculator(opponent, 1.3);
+
         System.out.println(getName() + " uses Inferno on " + opponent.getName() + ".");
-        switch(opponent.getType().toLowerCase()) {
-            case "water":
-                opponent.takeDamage(damage + 55);
-                break;
-            case "grass":
-                opponent.takeDamage(damage + 75);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 35);
-                break;
-            case "fire":
-                opponent.takeDamage(damage + 15);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setTemperature(temperature - 30);
         setHp(getHp() + 20);
         System.out.println(getName() + " has gained 20 HP points. HP is now: " + getHp());
     }
 
     public void pyroBall(Pokemon opponent) {
-        int damage = calculateDamage(temperature, maxTemperature);
+        int damage = damageCalculator(opponent, 1.5);
+
         System.out.println(getName() + " throws a PyroBall to " + opponent.getName() + ".");
-        switch(opponent.getType().toLowerCase()) {
-            case "water":
-                opponent.takeDamage(damage + 40);
-                break;
-            case "grass":
-                opponent.takeDamage(damage + 50);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 30);
-                break;
-            case "fire":
-                opponent.takeDamage(damage + 10);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setTemperature(temperature - 20);
         setHp(getHp() + 15);
         System.out.println(getName() + " has gained 15 HP points. HP is now: " + getHp());
     }
 
     public void fireLash(Pokemon opponent) {
-        int damage = calculateDamage(temperature, maxTemperature);
+        int damage = damageCalculator(opponent, 1.2);
+
         System.out.println(getName() + " strikes " + opponent.getName() + " with FireLash.");
-        switch(opponent.getType().toLowerCase()) {
-            case "water":
-                opponent.takeDamage(damage + 35);
-                break;
-            case "grass":
-                opponent.takeDamage(damage + 50);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 20);
-                break;
-            case "fire":
-                opponent.takeDamage(damage + 5);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setTemperature(temperature - 15);
         setHp(getHp() + 10);
         System.out.println(getName() + " has gained 10 HP points. HP is now: " + getHp());
     }
 
     public void flameThrower(Pokemon opponent) {
-        int damage = calculateDamage(temperature, maxTemperature);
+        int damage = damageCalculator(opponent, 1.4);
+
         System.out.println(getName() + " attacks " + opponent.getName() + " with FlameThrower.");
-        switch(opponent.getType().toLowerCase()) {
-            case "water":
-                opponent.takeDamage(damage + 45);
-                break;
-            case "grass":
-                opponent.takeDamage(damage + 60);
-                break;
-            case "electric":
-                opponent.takeDamage(damage + 30);
-                break;
-            case "fire":
-                opponent.takeDamage(damage + 10);
-                break;
-            default:
-                System.out.println("This type of pokemon cannot compete.");
-        }
+        opponent.takeDamage(damage);
         setTemperature(temperature - 20);
         setHp(getHp() + 15);
         System.out.println(getName() + " has gained 15 HP points. HP is now: " + getHp());

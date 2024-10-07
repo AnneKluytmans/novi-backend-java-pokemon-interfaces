@@ -132,9 +132,9 @@ public abstract class Pokemon {
 
     public int calculateDamage(int power, int limit) {
         if (power > (limit/2)) {
-            return (int) (Math.random() * 11) + 10;
+            return (int) ((Math.random() * 11) + 10);
         } else {
-            return (int) (Math.random() * 10) + 1;
+            return (int) ((Math.random() * 10) + 1);
         }
     }
 }
