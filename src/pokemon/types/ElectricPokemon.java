@@ -8,7 +8,7 @@ import java.util.List;
 public class ElectricPokemon extends Pokemon {
     private static final int maxVoltage = 5000;
     private static final List<String> attacks = Arrays.asList("ThunderPunch", "ElectroBall", "Thunder", "VoltTackle");
-    private int voltageLevel;
+    private int voltageLevel = 3590;
 
     public ElectricPokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int voltageLevel) {
         super(name, "electric", food, sound, level, weight, height, hp, xp);

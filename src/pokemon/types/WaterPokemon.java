@@ -8,7 +8,7 @@ import java.util.List;
 public class WaterPokemon extends Pokemon {
     private static final int maxHydrationLevel = 2500;
     private static final List<String> attacks = Arrays.asList("Surf", "HydroPump", "RainDance", "HydroCanon");
-    private int hydrationLevel;
+    private int hydrationLevel = 1300;
 
     public WaterPokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int hydrationLevel) {
         super(name, "water", food, sound, level, weight, height, hp, xp);

@@ -8,7 +8,7 @@ import java.util.List;
 public class GrassPokemon extends Pokemon {
     private static final int maxChlorofylLevel = 1000;
     private static final List<String> attacks = Arrays.asList("LeafStorm", "SolarBeam", "LeechSeed", "LeafBlade");
-    private int chlorofylLevel;
+    private int chlorofylLevel = 600;
 
     public GrassPokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int chlorofylLevel) {
         super(name, "grass", food, sound, level, weight, height, hp, xp);

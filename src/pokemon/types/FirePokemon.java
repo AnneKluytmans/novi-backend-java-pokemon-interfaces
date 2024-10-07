@@ -8,7 +8,7 @@ import java.util.List;
 public class FirePokemon extends Pokemon {
     private static final int maxTemperature = 500;
     private static final List<String> attacks = Arrays.asList("Inferno", "PyroBall", "FireLash", "FlameThrower");
-    private int temperature;
+    private int temperature = 194;
 
     public FirePokemon(String name, String food, String sound, int level, float weight, float height, int hp, int xp, int temperature) {
         super(name, "fire", food, sound, level, weight, height, hp, xp);
